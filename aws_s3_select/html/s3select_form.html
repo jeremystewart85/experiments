@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	body {font: 18px/24px "Lucida Sans", "Lucida Grande", "Lucida Sans Unicode", sans-serif;}	
+	.required_notification {font-size: 13px;}
+	.s3select_form ul {
+		width:800px;
+		list-style-type:none;
+		list-style-position:outside;
+		margin:0px;
+		padding:0px;
+	}
+	.s3select_form li{
+		padding:12px; 		
+		position:relative;
+	}
+	.s3select_form li:first-child, .s3select_form li:last-child {
+		border-bottom:1px solid #777;
+	}
+	.s3select_form h2 {
+		margin:0;
+		display: inline;
+	}
+	.required_notification {
+		color:#d45252; 
+		margin:5px 0 0 0; 
+		display:inline;
+		float:right;
+	}
+	.s3select_form label {
+		width:200px;
+		margin-top: 3px;
+		display:inline-block;
+		float:left;
+		padding:3px;
+	}
+	.s3select_form input {
+		height:20px; 
+		width:220px; 
+		padding:5px 8px;
+	}
+	.s3select_form textarea {padding:8px; width:300px;}
+	.s3select_form button {margin-left:156px;}
+	.s3select_form input, .s3select_form textarea { 
+		border:1px solid #aaa;		
+		border-radius:2px;
+		padding-right:30px;
+		-moz-transition: padding .25s; 
+		-webkit-transition: padding .25s; 
+		-o-transition: padding .25s;
+		transition: padding .25s;
+		vertical-align: middle;
+	}
+	.s3select_form input:focus, .s3select_form textarea:focus {
+		background: #fff; 
+		border:1px solid #555; 
+		box-shadow: 0 0 3px #aaa;
+		padding-right:70px;
+	}
+	/* Button Style */
+	button.submit {
+		background-color: #68b12f;
+		background: -webkit-gradient(linear, left top, left bottom, from(#68b12f), to(#50911e));
+		background: -webkit-linear-gradient(top, #68b12f, #50911e);
+		background: -moz-linear-gradient(top, #68b12f, #50911e);
+		background: -ms-linear-gradient(top, #68b12f, #50911e);
+		background: -o-linear-gradient(top, #68b12f, #50911e);
+		background: linear-gradient(top, #68b12f, #50911e);
+		border: 1px solid #509111;
+		border-bottom: 1px solid #5b992b;
+		border-radius: 3px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		-ms-border-radius: 3px;
+		-o-border-radius: 3px;
+		box-shadow: inset 0 1px 0 0 #9fd574;
+		-webkit-box-shadow: 0 1px 0 0 #9fd574 inset ;
+		-moz-box-shadow: 0 1px 0 0 #9fd574 inset;
+		-ms-box-shadow: 0 1px 0 0 #9fd574 inset;
+		-o-box-shadow: 0 1px 0 0 #9fd574 inset;
+		color: white;
+		font-weight: bold;
+		padding: 6px 20px;
+		text-align: center;
+		text-shadow: 0 -1px 0 #396715;
+	}
+	button.submit:hover {
+		opacity:.85;
+		cursor: pointer; 
+	}
+	button.submit:active {
+		border: 1px solid #20911e;
+		box-shadow: 0 0 10px 5px #356b0b inset; 
+		-webkit-box-shadow:0 0 10px 5px #356b0b inset ;
+		-moz-box-shadow: 0 0 10px 5px #356b0b inset;
+		-ms-box-shadow: 0 0 10px 5px #356b0b inset;
+		-o-box-shadow: 0 0 10px 5px #356b0b inset;	 
+	}
+	</style>
+    <meta charset="utf-8">
+    <title>S3 Select Query Submission Form</title>
+</head>
+<body>
+	<form class="s3select_form" action="<api_gateway_URL>" method="POST" name="s3select_form">
+		<ul>
+			<li>
+				<h2>S3 Select</h2>
+				<span class="required_notification">* Denotes Required Field</span>
+			</li>
+			<li>
+				<label for="name">Bucket: <span style="color:red">*</span></label>
+				<select name="bucket">
+					<option value="hvstatictest">hvstatictest</option>
+				</select>
+			</li>
+			<li>
+				<label for="key">File Key: <span style="color:red">*</span></label>
+				<input type="text" name="key" placeholder="path/to/key.csv" required />			
+			</li>
+			<li>
+				<label for="header">File Includes Header: </label>
+				<input type="checkbox" name="header" value="true" checked="checked" />
+			</li>
+			<li>
+				<label for="query">Query: <span style="color:red">*</span></label>
+				<textarea name="query" cols="60" rows="6" placeholder="SELECT s._1 FROM SQLObject AS s;"></textarea>
+			</li>
+			<li>
+				<button class="submit" type="submit">Submit Query</button>
+			</li>
+		</ul>
+	</form>
+</body>
+</html>
